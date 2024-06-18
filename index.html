@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Power-Up</title>
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+</head>
+<body>
+    <script>
+        var t = TrelloPowerUp.iframe();
+        t.render(function(){
+            // Add your custom render logic here
+            t.sizeTo('#content')
+            .done();
+        });
+    </script>
+    <div id="content">
+        <!-- Your Power-Up content goes here -->
+        <h1>Weather Power-Up</h1>
+    </div>
+</body>
+</html>

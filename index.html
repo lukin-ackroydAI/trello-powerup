@@ -1,54 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sync with Trello</title>
-    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <title>Trello Power-Up</title>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script>
+    TrelloPowerUp.initialize({
+      'card-buttons': function(t, options) {
+        return [{
+          icon: 'https://example.com/icon.png',
+          text: 'Sync',
+          callback: function(t) {
+            return t.popup({
+              title: 'Sync Data',
+              url: 'https://delightful-elf-acb968.netlify.app/sync.html',
+              height: 184
+            });
+          }
+        }];
+      }
+    });
+  </script>
 </head>
 <body>
-    <h1>Sync with Trello</h1>
-    <script>
-        var t = TrelloPowerUp.iframe();
-
-        t.render(function(){
-            return t.board('name', 'id')
-                .then(function(board){
-                    document.getElementById('boardName').textContent = 'Board: ' + board.name;
-                    document.getElementById('boardId').textContent = 'ID: ' + board.id;
-                });
-        });
-
-        t.render(function(){
-            return t.card('name', 'id')
-                .then(function(card){
-                    document.getElementById('cardName').textContent = 'Card: ' + card.name;
-                    document.getElementById('cardId').textContent = 'ID: ' + card.id;
-                });
-        });
-
-        function syncWithServer(){
-            fetch('https://your-server-api/sync', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    boardId: t.board('id').then(id => id),
-                    cardId: t.card('id').then(id => id)
-                })
-            })
-            .then(response => response.json())
-            .then(data => console.log('Success:', data))
-            .catch((error) => console.error('Error:', error));
-        }
-    </script>
-    <div>
-        <h2 id="boardName">Board: </h2>
-        <h3 id="boardId">ID: </h3>
-    </div>
-    <div>
-        <h2 id="cardName">Card: </h2>
-        <h3 id="cardId">ID: </h3>
-    </div>
-    <button onclick="syncWithServer()">Sync</button>
+  <h1>Welcome to Trello Power-Up</h1>
+  <p>Ensure your content is accessible and working correctly.</p>
 </body>
 </html>
+

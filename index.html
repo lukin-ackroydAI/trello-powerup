@@ -5,7 +5,8 @@
   <script>
     var t = window.TrelloPowerUp.iframe();
 
-    t.signUrl('https://delightful-elf-acb968.netlify.app/index.html');
+    // Ensure the iframe URL is properly signed
+    var signedUrl = t.signUrl('https://delightful-elf-acb968.netlify.app/index.html');
 
     t.initialize({
       'board-buttons': function(t, options) {
@@ -15,7 +16,7 @@
           callback: function(t) {
             return t.popup({
               title: 'Sync Data',
-              url: 'sync.html',
+              url: signedUrl,
             });
           }
         }];
@@ -27,7 +28,7 @@
           callback: function(t) {
             return t.popup({
               title: 'Sync Data',
-              url: 'sync.html',
+              url: signedUrl,
             });
           }
         }];

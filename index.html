@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Welcome to Trello Power-Up</title>
-    <script src="https://p.trellocdn.com/power-up.min.js"></script>
-  </head>
-  <body>
-    <h1>Welcome to Trello Power-Up</h1>
-    <p>Ensure your content is accessible and working correctly.</p>
-    <script>
-      var t = TrelloPowerUp.iframe();
-      
-      t.render(function(){
-        return t.sizeTo('#content').done();
-      });
+<head>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script>
+    var t = window.TrelloPowerUp.iframe();
 
-      t.signUrl('https://delightful-elf-acb968.netlify.app/');
-    </script>
-  </body>
+    t.signUrl('https://delightful-elf-acb968.netlify.app/index.html');
+
+    t.initialize({
+      'board-buttons': function(t, options) {
+        return [{
+          icon: 'https://cdn.glitch.com/ae994bc8-c47f-49f9-981b-0de897f63c8d%2Ficon.png?v=1567118556843',
+          text: 'Sync Data',
+          callback: function(t) {
+            return t.popup({
+              title: 'Sync Data',
+              url: 'sync.html',
+            });
+          }
+        }];
+      },
+      'card-buttons': function(t, options) {
+        return [{
+          icon: 'https://cdn.glitch.com/ae994bc8-c47f-49f9-981b-0de897f63c8d%2Ficon.png?v=1567118556843',
+          text: 'Sync Data',
+          callback: function(t) {
+            return t.popup({
+              title: 'Sync Data',
+              url: 'sync.html',
+            });
+          }
+        }];
+      }
+    });
+
+    t.render(function() {
+      t.sizeTo('#content');
+    });
+  </script>
+</head>
+<body>
+  <h1>Welcome to Trello Power-Up</h1>
+  <p>Ensure your content is accessible and working correctly.</p>
+</body>
 </html>
-

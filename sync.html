@@ -5,14 +5,16 @@
   <script>
     var t = TrelloPowerUp.iframe();
 
+    // Additional logic specific to this iframe
     t.render(function() {
       t.sizeTo('#content');
     });
   </script>
 </head>
 <body>
-  <h1>Sync Page</h1>
-  <p>This page handles sync tasks.</p>
-  <div id="content"></div>
+  <div id="content">
+    <h1>Specific Content for Sync/Attachment Section/etc.</h1>
+    <p>Additional content goes here.</p>
+  </div>
 </body>
 </html>

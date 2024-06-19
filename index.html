@@ -12,11 +12,12 @@
         TrelloPowerUp.initialize({
             'board-buttons': function(t, options) {
                 return [{
-                    text: 'Click Me',
+                    text: 'Sync with Server AI',
                     callback: function(t) {
+                        // This callback could make an API call to your server to push updates to Trello
                         return t.popup({
-                            title: 'Popup Title',
-                            url: 'https://your-hosted-url/index.html',
+                            title: 'Sync with Server AI',
+                            url: 'https://delightful-elf-acb968.netlify.app/sync.html',
                             height: 200
                         });
                     }

@@ -4,7 +4,9 @@
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <script>
     // Initialize the Trello Power-Up
-    var t = window.TrelloPowerUp.initialize({
+    var t = TrelloPowerUp.iframe();
+
+    TrelloPowerUp.initialize({
       'attachment-sections': function(t, options) {
         return [{
           claimed: [],

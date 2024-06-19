@@ -3,7 +3,10 @@
 <head>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <script>
-    var t = window.TrelloPowerUp.initialize({
+    // Initialize the Trello Power-Up
+    var t = TrelloPowerUp.iframe();
+
+    TrelloPowerUp.initialize({
       'attachment-sections': function(t, options) {
         return [{
           claimed: [],

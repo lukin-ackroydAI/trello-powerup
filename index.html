@@ -1,41 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trello Power-Up</title>
     <script src="https://p.trellocdn.com/power-up.min.js"></script>
-    <script>
-        var t = TrelloPowerUp.iframe();
-        
-        // When the power-up is initialized
-        t.render(function() {
-            return t.board('name')
-            .then(function(board) {
-                document.getElementById('content').innerText = 'Hello, ' + board.name;
-            });
-        });
-
-        // Example function to post notifications to Slack (simplified example)
-        function postToSlack(message) {
-            fetch('https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: message }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
 </head>
 <body>
-    <h1>Welcome to the Trello Power-Up</h1>
-    <div id="content">Loading...</div>
-    <button onclick="postToSlack('Task Completed')">Notify Slack</button>
+    <h1>Trello Power-Up</h1>
+    <script>
+        TrelloPowerUp.initialize({
+            'board-buttons': function(t, options) {
+                return [{
+                    text: 'Click Me',
+                    callback: function(t) {
+                        return t.popup({
+                            title: 'Popup Title',
+                            url: 'https://your-hosted-url/index.html',
+                            height: 200
+                        });
+                    }
+                }];
+            }
+        });
+        console.log('Trello Power-Up Loaded');
+    </script>
 </body>
 </html>

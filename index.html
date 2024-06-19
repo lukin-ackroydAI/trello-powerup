@@ -10,7 +10,7 @@
       'attachment-sections': function(t, options) {
         return [{
           claimed: [],
-          icon: 'https://your-deployed-url/icon.png',
+          icon: 'https://your-deployed-url/omnitool-logo.png.webp',
           title: 'Attachment Section',
           content: {
             type: 'iframe',
@@ -21,7 +21,7 @@
       },
       'board-buttons': function(t, options) {
         return [{
-          icon: 'https://your-deployed-url/icon.png',
+          icon: 'https://your-deployed-url/omnitool-logo.png.webp',
           text: 'Board Button',
           callback: function(t) {
             return t.popup({
@@ -34,7 +34,7 @@
       },
       'card-buttons': function(t, options) {
         return [{
-          icon: 'https://your-deployed-url/icon.png',
+          icon: 'https://your-deployed-url/omnitool-logo.png.webp',
           text: 'Card Button',
           callback: function(t) {
             return t.popup({
@@ -49,7 +49,7 @@
         return t.get('card', 'shared', 'estimate')
           .then(function(estimate) {
             return [{
-              icon: 'https://your-deployed-url/icon.png',
+              icon: 'https://your-deployed-url/omnitool-logo.png.webp',
               text: estimate || 'No Estimate!',
               color: estimate ? null : 'red'
             }];

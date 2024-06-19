@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Weather Power-Up</title>
+    <title>Trello Power-Up</title>
     <script src="https://p.trellocdn.com/power-up.min.js"></script>
-</head>
-<body>
     <script>
         var t = TrelloPowerUp.iframe();
-        t.render(function(){
-            // Add your custom render logic here
-            t.sizeTo('#content')
-            .done();
+        
+        // When the power-up is initialized
+        t.render(function() {
+            return t.board('name')
+            .then(function(board) {
+                document.getElementById('content').innerText = 'Hello, ' + board.name;
+            });
         });
+
+        // Example function to post notifications to Slack (simplified example)
+        function postToSlack(message) {
+            fetch('https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
     </script>
-    <div id="content">
-        <!-- Your Power-Up content goes here -->
-        <h1>Weather Power-Up</h1>
-    </div>
+</head>
+<body>
+    <h1>Welcome to the Trello Power-Up</h1>
+    <div id="content">Loading...</div>
+    <button onclick="postToSlack('Task Completed')">Notify Slack</button>
 </body>
 </html>

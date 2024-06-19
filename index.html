@@ -3,35 +3,104 @@
 <head>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <script>
+    // Initialize the Trello Power-Up
     var t = window.TrelloPowerUp.iframe();
 
-    // Ensure the iframe URL is properly signed
-    var signedUrl = t.signUrl('https://delightful-elf-acb968.netlify.app/index.html');
-
     t.initialize({
+      'attachment-sections': function(t, options) {
+        return [{
+          claimed: [],
+          icon: 'https://your-deployed-url/icon.png',
+          title: 'Attachment Section',
+          content: {
+            type: 'iframe',
+            url: t.signUrl('./attachment-section.html'),
+            height: 230
+          }
+        }];
+      },
       'board-buttons': function(t, options) {
         return [{
-          icon: 'https://cdn.glitch.com/ae994bc8-c47f-49f9-981b-0de897f63c8d%2Ficon.png?v=1567118556843',
-          text: 'Sync Data',
+          icon: 'https://your-deployed-url/icon.png',
+          text: 'Board Button',
           callback: function(t) {
             return t.popup({
-              title: 'Sync Data',
-              url: signedUrl,
+              title: 'Board Button',
+              url: './board-button.html',
+              height: 230
             });
           }
         }];
       },
       'card-buttons': function(t, options) {
         return [{
-          icon: 'https://cdn.glitch.com/ae994bc8-c47f-49f9-981b-0de897f63c8d%2Ficon.png?v=1567118556843',
-          text: 'Sync Data',
+          icon: 'https://your-deployed-url/icon.png',
+          text: 'Card Button',
           callback: function(t) {
             return t.popup({
-              title: 'Sync Data',
-              url: signedUrl,
+              title: 'Card Button',
+              url: './card-button.html',
+              height: 230
             });
           }
         }];
+      },
+      'card-badges': function(t, options) {
+        return t.get('card', 'shared', 'estimate')
+          .then(function(estimate) {
+            return [{
+              icon: 'https://your-deployed-url/icon.png',
+              text: estimate || 'No Estimate!',
+              color: estimate ? null : 'red'
+            }];
+          });
+      },
+      'card-detail-badges': function(t, options) {
+        return t.get('card', 'shared', 'estimate')
+          .then(function(estimate) {
+            return [{
+              title: 'Estimate',
+              text: estimate || 'No Estimate!',
+              color: estimate ? null : 'red',
+              callback: function(t) {
+                return t.popup({
+                  title: "Estimation",
+                  url: './estimate.html',
+                  height: 230
+                });
+              }
+            }];
+          });
+      },
+      'show-settings': function(t, options) {
+        return t.popup({
+          title: 'Settings',
+          url: './settings.html',
+          height: 230
+        });
+      },
+      'authorization-status': function(t, options) {
+        return t.get('member', 'private', 'authToken')
+          .then(function(authToken) {
+            if (authToken) {
+              return { authorized: true };
+            } else {
+              return { authorized: false };
+            }
+          });
+      },
+      'show-authorization': function(t, options) {
+        return t.popup({
+          title: 'Authorize Account',
+          url: './authorize.html',
+          height: 230
+        });
+      },
+      'on-enable': function(t, options) {
+        console.log('Power-Up enabled on the board');
+      },
+      'on-disable': function(t, options) {
+        console.log('Power-Up disabled on the board');
       }
     });
 
@@ -43,5 +112,6 @@
 <body>
   <h1>Welcome to Trello Power-Up</h1>
   <p>Ensure your content is accessible and working correctly.</p>
+  <div id="content"></div>
 </body>
 </html>

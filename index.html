@@ -4,8 +4,6 @@
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <script>
     // Initialize the Trello Power-Up
-    var t = TrelloPowerUp.iframe();
-
     TrelloPowerUp.initialize({
       'attachment-sections': function(t, options) {
         return [{
@@ -104,8 +102,8 @@
       }
     });
 
-    t.render(function() {
-      t.sizeTo('#content');
+    TrelloPowerUp.render(function() {
+      TrelloPowerUp.sizeTo('#content');
     });
   </script>
 </head>
